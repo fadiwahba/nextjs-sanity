@@ -1,3 +1,11 @@
+# Startup Directory
+
+A web application that serves as a comprehensive directory for startup companies. Users can:
+- Add and list their startup company details
+- Rate other startups
+- Track view counts for each company
+- Browse through various startup ideas and initiatives
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
