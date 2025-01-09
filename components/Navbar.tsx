@@ -1,4 +1,5 @@
 import { auth, signIn, signOut } from "@/auth";
+import { LogOutIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -7,18 +8,22 @@ const Navbar = async () => {
   const session = await auth();
 
   const displayUserProfile = () => {
-    if (session?.user?.image) {
+    if (session?.user) {
       return (
-        <Image
-          src={session?.user?.image}
-          alt={session?.user?.name as string}
-          width={40}
-          height={40}
-          className="rounded-full"
-        ></Image>
+        <div className="flex items-center gap-1">
+          <div className="flex flex-col items-end">
+            <div className="text-xs">Logged in as </div>
+            <div className="font-bold text-xs">{session?.user?.name}</div>
+          </div>
+          <Image
+            src={session?.user?.image}
+            alt={session?.user?.name as string}
+            width={32}
+            height={32}
+            className="rounded-full"
+          />
+        </div>
       );
-    } else {
-      return <span>{session?.user?.name}</span>;
     }
   };
 
@@ -33,14 +38,20 @@ const Navbar = async () => {
             height={40}
           ></Image>
         </Link>
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-3">
           {session && session?.user ? (
             <>
               <Link
                 href="/startup/create"
-                className="text-indigo-500 hover:underline"
+                className="text-purple-500 hover:bg-purple-50 p-3 rounded-md transition-colors"
               >
                 <span>Create</span>
+              </Link>
+              <Link
+                href={`/profile`}
+                className="text-purple-500 hover:bg-purple-50 p-3 rounded-md transition-colors"
+              >
+                {displayUserProfile()}
               </Link>
               <form
                 action={async () => {
@@ -50,18 +61,11 @@ const Navbar = async () => {
               >
                 <button
                   type="submit"
-                  className="text-indigo-500 hover:underline"
+                  className="text-purple-500 hover:bg-purple-50 p-3 rounded-md transition-colors"
                 >
-                  <span>Logout</span>
+                  <LogOutIcon className="size-6 m-0" />
                 </button>
               </form>
-              <Link
-                // href={`/user/${session?.id}`}
-                href={`/profile`}
-                className="text-indigo-500 hover:underline"
-              >
-                {displayUserProfile()}
-              </Link>
             </>
           ) : (
             <form
@@ -70,7 +74,7 @@ const Navbar = async () => {
                 await signIn("github");
               }}
             >
-              <button type="submit" className="text-indigo-500 hover:underline">
+              <button type="submit" className="text-purple-500 hover:underline">
                 <span>Login</span>
               </button>
             </form>
