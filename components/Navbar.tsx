@@ -16,7 +16,7 @@ const Navbar = async () => {
             <div className="font-bold text-xs">{session?.user?.name}</div>
           </div>
           <Image
-            src={session?.user?.image}
+            src={session?.user?.image || "/default-profile.png"}
             alt={session?.user?.name as string}
             width={32}
             height={32}
