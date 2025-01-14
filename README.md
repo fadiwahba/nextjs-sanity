@@ -6,6 +6,11 @@ A web application that serves as a comprehensive directory for startup companies
 - Track view counts for each company
 - Browse through various startup ideas and initiatives
 
+## Demo:
+https://nextjs-sanity-psi-two.vercel.app/
+
+---
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
